@@ -91,6 +91,12 @@ public class MeleeAttacker : MonoBehaviour {
 		//print ("Attacking south");
 	}
 
+	public float Knockback (){
+		GetType {
+			return this.knockback;
+		}
+	}
+
 	public Vector2 Size {
 		get {
 			return this.GetComponent<BoxCollider2D> ().size;

@@ -46,7 +46,7 @@ public class Ouch : MonoBehaviour {
 			print ("this velocity" + rb2dCol.velocity);
 			print ("normalized heading" + heading.normalized);
 			this.oldPosition = collider.transform.position;
-			this.newPosition = this.oldPosition + heading * this.knockback * this.force; 
+			this.newPosition = this.oldPosition + heading.normalized * this.knockback * this.force; 
 			this.animationTime = 0;
 			this.animating = true;
 			//collider.attachedRigidbody.AddForce (heading.normalized * this.knockback * this.force);
@@ -54,7 +54,7 @@ public class Ouch : MonoBehaviour {
 
 			//collider.transform.position = Vector2.SmoothDamp (collider.transform.position, new Vector2(1, 1), heading*this.knockback, 1000);
 			//collider.transform.position += (collider.transform.position - this.transform.position).normalized * this.knockback;
-			collider.transform.position += (collider.transform.position - this.transform.position).normalized * this.knockback;
+			//collider.transform.position += (collider.transform.position - this.transform.position).normalized * this.knockback;
 			if (this.destroyOnTouch) {
 				Destroy (this.gameObject);
 			}
@@ -63,12 +63,13 @@ public class Ouch : MonoBehaviour {
 	
 	void Knockback (){
 		this.animationTime += Time.deltaTime;
-		if (this.animationTime > this.transitionDuration) {
+		/*if (this.animationTime > this.transitionDuration) {
 			this.animationTime = this.transitionDuration;
-			this.animating = false;
-		}
-		
+			//this.animating = false;
+		}*/
 		float completed = this.animationTime / this.transitionDuration;
-		this.collided.transform.position = Vector3.Lerp (this.collided.transform.position, this.newPosition, completed);
+		print (completed);
+		
+		this.collided.transform.position = Vector2.Lerp (this.collided.transform.position, this.newPosition, completed);
 	}
 }
