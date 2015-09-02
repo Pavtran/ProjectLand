@@ -91,8 +91,8 @@ public class MeleeAttacker : MonoBehaviour {
 		//print ("Attacking south");
 	}
 
-	public float Knockback (){
-		GetType {
+	public float Knockback {
+		get {
 			return this.knockback;
 		}
 	}
